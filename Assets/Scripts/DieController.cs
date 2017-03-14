@@ -12,6 +12,7 @@ public class DieController : MonoBehaviour {
     void Start () {
         rb = GetComponent<Rigidbody>();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        Physics.gravity = new Vector3(0, 5, 0);
     }
 
     // Update is called once per frame
