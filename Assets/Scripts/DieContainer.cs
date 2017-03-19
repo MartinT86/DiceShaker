@@ -29,7 +29,7 @@ public class DieContainer : MonoBehaviour
             dieFour,
             dieFive
 		};
-	    debugText.text = dieCount.ToString();
+	    //debugText.text = dieCount.ToString();
 	}
 
     public void AddDie()
