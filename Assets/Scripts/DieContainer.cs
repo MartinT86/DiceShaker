@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DieContainer : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class DieContainer : MonoBehaviour
     public GameObject dieThree;
     public GameObject dieFour;
     public GameObject dieFive;
+
+    public Text debugText;
 
     private GameObject[] dice;
     private int dieCount;
@@ -25,14 +29,28 @@ public class DieContainer : MonoBehaviour
             dieFour,
             dieFive
 		};
+	    debugText.text = dieCount.ToString();
 	}
 
     public void AddDie()
     {
-        if (dieCount > 0 && dieCount < 6)
+        var inactiveDice = dice.FirstOrDefault(x => x.activeInHierarchy == false);
+
+        if (inactiveDice != null)
         {
-            dice[dieCount - 1].SetActive(true);
-            dieCount = dieCount + 1;
+            var newPosition = new Vector3(0,9.0f,0);
+            inactiveDice.transform.position = newPosition;
+            inactiveDice.SetActive(true);
+        }
+    }
+
+    public void RemoveDie()
+    {
+        var activeDice = dice.FirstOrDefault(x => x.activeInHierarchy);
+
+        if (activeDice != null)
+        {
+            activeDice.SetActive(false);
         }
     }
 
